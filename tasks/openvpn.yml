@@ -25,9 +25,6 @@
 - include_tasks: system/routing.yml
   when: openvpn_route_traffic | bool
 
-- include_tasks: core/read-client-files.yml
-  when: openvpn_unified_client_profiles
-
 - include_tasks: authentication/ldap.yml
 
 - include_tasks: authentication/pam.yml
@@ -36,11 +33,12 @@
 
 - include_tasks: authentication/tls.yml
 
+- include_tasks: core/read-client-files.yml
+  when: openvpn_unified_client_profiles
+
 - import_tasks: core/clients.yml
 
 - include_tasks: scripts.yml
-
-- include_tasks: "system/bridge/{{ ansible_os_family }}.yml"
 
 - include_tasks: "system/bridge/{{ ansible_os_family }}.yml"
 
